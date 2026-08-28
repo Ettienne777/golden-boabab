@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Boabab Coffee Roasting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&family=Karla:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coal:#1c130c;
+    --coal-2:#241811;
+    --umber:#3a2417;
+    --umber-2:#4a2f1d;
+    --cream:#efe4cf;
+    --cream-2:#e6d8bd;
+    --paper:#f8f3e8;
+    --amber:#c9782f;
+    --amber-light:#e0a25a;
+    --ink:#2a1c12;
+    --line: rgba(239,228,207,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Karla', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Playfair Display', serif; font-weight:600; line-height:1.08;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    font-weight:600;
+    color:var(--amber);
+  }
+  .rule{
+    width:46px; height:2px; background:var(--amber);
+    margin:18px 0 22px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Jost', sans-serif;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.74rem;
+    font-weight:600;
+    padding:16px 30px;
+    background:var(--coal);
+    color:var(--paper);
+    border-radius:2px;
+    transition:transform .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{ background:var(--umber); transform:translateY(-2px); }
+  .btn svg{ width:14px; height:14px; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 40px; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:absolute; top:0; left:0; right:0; z-index:20;
+    padding:26px 0;
+  }
+  .header-row{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    display:flex; align-items:center; gap:14px;
+    color:var(--paper);
+  }
+  .logo svg{ width:40px; height:40px; flex-shrink:0; }
+  .logo-text{ font-family:'Jost', sans-serif; line-height:1.15; }
+  .logo-text .top{ font-size:.98rem; font-weight:600; letter-spacing:.06em; }
+  .logo-text .bottom{ font-size:.58rem; letter-spacing:.24em; opacity:.75; }
+  nav ul{
+    display:flex; gap:38px; list-style:none;
+    font-family:'Jost', sans-serif;
+    font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
+    font-weight:500;
+  }
+  nav a{ color:rgba(239,228,207,.85); position:relative; padding-bottom:6px; transition:color .2s; }
+  nav a:hover{ color:var(--paper); }
+  nav a.active{ color:var(--paper); }
+  nav a.active::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--amber);
+  }
+  .head-right{ display:flex; align-items:center; gap:26px; }
+  .cart{ position:relative; color:var(--paper); }
+  .cart svg{ width:20px; height:20px; }
+  .cart-count{
+    position:absolute; top:-8px; right:-9px;
+    background:var(--amber); color:var(--coal);
+    font-size:.6rem; font-weight:700;
+    width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pill-outline{
+    display:flex; align-items:center; gap:9px;
+    border:1px solid rgba(239,228,207,.55);
+    color:var(--paper);
+    font-family:'Jost', sans-serif;
+    font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; font-weight:500;
+    padding:11px 20px; border-radius:999px;
+    transition:background .2s, border-color .2s;
+  }
+  .pill-outline:hover{ background:rgba(239,228,207,.12); border-color:var(--paper); }
+  .pill-outline svg{ width:15px; height:15px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:760px;
+    display:flex; align-items:center;
+    overflow:hidden;
+    background:#3d2417;
+  }
+  .hero img.bg{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    object-position:center 22%;
+    filter:saturate(1.08) brightness(.9);
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      linear-gradient(105deg, rgba(8,4,2,.88) 0%, rgba(10,5,2,.68) 30%, rgba(15,7,3,.28) 52%, rgba(10,5,2,.32) 100%);
+  }
+  .hero::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(6,3,1,.4) 0%, transparent 26%, transparent 66%, rgba(6,3,1,.7) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:5;
+    max-width:560px;
+    padding:190px 0 90px;
+  }
+  .hero h1{
+    color:var(--paper);
+    font-size:3.35rem;
+    margin:16px 0 0;
+    text-shadow:0 4px 24px rgba(0,0,0,.35);
+  }
+  .hero h1 .accent{ color:var(--amber-light); }
+  .hero p{
+    color:rgba(239,228,207,.88);
+    font-size:1.02rem;
+    line-height:1.65;
+    max-width:400px;
+    margin-bottom:34px;
+  }
+
+  /* ---------- FEATURE BAR ---------- */
+  .features{
+    position:relative; z-index:5;
+    background:var(--umber);
+    border-top:1px solid rgba(239,228,207,.12);
+  }
+  .features-row{
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .feature{
+    display:flex; align-items:flex-start; gap:16px;
+    padding:34px 28px;
+    border-left:1px solid rgba(239,228,207,.12);
+  }
+  .feature:first-child{ border-left:none; }
+  .feature svg{ width:30px; height:30px; flex-shrink:0; color:var(--amber-light); margin-top:2px; }
+  .feature .f-title{
+    font-family:'Jost', sans-serif;
+    font-size:.78rem; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--paper); margin-bottom:5px;
+  }
+  .feature .f-sub{ font-size:.85rem; color:rgba(239,228,207,.65); line-height:1.5; }
+
+  /* ---------- OUR COFFEE ---------- */
+  .coffee-section{
+    background:var(--cream);
+    padding:110px 0;
+  }
+  .coffee-grid{
+    display:grid; grid-template-columns:0.85fr 2fr; gap:56px;
+  }
+  .coffee-intro h2{ font-size:2.5rem; margin-bottom:20px; color:var(--ink); }
+  .coffee-intro h2 .accent{ color:var(--amber); }
+  .coffee-intro p{ color:#5c4a38; line-height:1.7; margin-bottom:30px; max-width:320px; }
+  .products{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  .product-card{ display:flex; flex-direction:column; }
+  .product-photo{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:4px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(196,159,104,.35), transparent 60%),
+      linear-gradient(160deg, #2c1f14 0%, #14100a 100%);
+    margin-bottom:20px;
+    padding:7% 13%;
+  }
+  .product-photo img{
+    position:relative; width:100%; height:100%; object-fit:contain;
+    object-position:center center;
+    transition:transform .5s ease;
+    filter:drop-shadow(0 18px 26px rgba(0,0,0,.5));
+  }
+  .product-card:hover .product-photo img{ transform:scale(1.04); }
+  .product-card h3{
+    font-size:1.15rem; margin-bottom:8px; letter-spacing:.02em; text-transform:uppercase; font-family:'Jost',sans-serif; font-weight:600;
+  }
+  .product-card .desc{ color:#5c4a38; font-size:.88rem; line-height:1.55; margin-bottom:12px; min-height:42px; }
+  .product-card .price{
+    font-family:'Jost', sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.1em;
+    color:var(--amber);
+  }
+
+  /* ---------- OUR STORY ---------- */
+  .story-section{
+    background:var(--coal-2);
+    display:grid; grid-template-columns:1fr 1fr;
+  }
+  .story-text{
+    padding:100px 60px; display:flex; flex-direction:column; justify-content:center;
+  }
+  .story-text h2{ color:var(--paper); font-size:2.5rem; margin-bottom:22px; }
+  .story-text h2 .accent{ color:var(--amber-light); }
+  .story-text p{ color:rgba(239,228,207,.72); line-height:1.75; max-width:430px; margin-bottom:26px; }
+  .story-link{
+    font-family:'Jost', sans-serif; letter-spacing:.14em; text-transform:uppercase; font-size:.74rem; font-weight:600;
+    color:var(--amber-light); display:inline-flex; align-items:center; gap:10px;
+  }
+  .story-link svg{ width:14px; height:14px; transition:transform .2s; }
+  .story-link:hover svg{ transform:translateX(4px); }
+  .story-photo{ position:relative; min-height:520px; overflow:hidden; }
+  .story-photo img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+  .story-photo::after{ content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(20,12,7,.35), transparent 30%); }
+
+  /* ---------- INFO STRIP ---------- */
+  .info-strip{ background:var(--cream-2); padding:56px 0; }
+  .info-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .info-item{ display:flex; align-items:center; gap:16px; }
+  .info-icon{
+    width:52px; height:52px; border-radius:50%;
+    border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    background:var(--paper);
+  }
+  .info-icon svg{ width:24px; height:24px; }
+  .qr-icon{
+    width:52px; height:52px; padding:6px; background:var(--paper); border-radius:4px; flex-shrink:0;
+  }
+  .info-item h4{
+    font-family:'Jost', sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.05em;
+    text-transform:uppercase; margin-bottom:4px;
+  }
+  .info-item p{ font-size:.82rem; color:#5c4a38; line-height:1.45; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--coal); padding:40px 0; }
+  .footer-row{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  .footer-logo{ display:flex; align-items:center; gap:12px; color:var(--paper); }
+  .footer-logo svg{ width:32px; height:32px; }
+  .footer-logo-text .top{ font-family:'Jost',sans-serif; font-size:.85rem; font-weight:600; letter-spacing:.06em; }
+  .footer-logo-text .bottom{ font-family:'Jost',sans-serif; font-size:.52rem; letter-spacing:.22em; opacity:.6; }
+  footer nav ul{ gap:30px; }
+  footer nav a{ font-size:.72rem; }
+  .footer-meta{
+    width:100%; margin-top:26px; padding-top:26px; border-top:1px solid rgba(239,228,207,.1);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  }
+  .footer-copy{ font-size:.78rem; color:rgba(239,228,207,.55); }
+  .social-icons{ display:flex; gap:14px; }
+  .social-icons a{
+    width:36px; height:36px; border:1px solid rgba(239,228,207,.3); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:var(--paper);
+    transition:background .2s;
+  }
+  .social-icons a:hover{ background:rgba(239,228,207,.12); }
+  .social-icons svg{ width:16px; height:16px; }
+
+  @media (max-width:980px){
+    nav, .head-right .pill-outline span{ display:none; }
+    .hero h1{ font-size:2.4rem; }
+    .coffee-grid{ grid-template-columns:1fr; }
+    .products{ grid-template-columns:1fr 1fr; }
+    .features-row, .info-row{ grid-template-columns:repeat(2,1fr); }
+    .feature:nth-child(3){ border-left:none; }
+    .story-section{ grid-template-columns:1fr; }
+    .story-photo{ min-height:320px; order:-1; }
+    .footer-row{ justify-content:center; text-align:center; }
+  }
+  @media (max-width:560px){
+    .wrap{ padding:0 22px; }
+    .products{ grid-template-columns:1fr; }
+    .features-row, .info-row{ grid-template-columns:1fr; }
+    .feature, .info-item{ border-left:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap header-row">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+        <path d="M32 46V30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M32 30c-2-6-9-8-13-6 2 5 8 8 13 6z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+        <path d="M32 30c2-6 9-8 13-6-2 5-8 8-13 6z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+        <path d="M32 24c-1.5-5-6-7-9-6 1.5 4 5 6.5 9 6z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M32 24c1.5-5 6-7 9-6-1.5 4-5 6.5-9 6z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M32 46c-6 2-10 0-11 3 4 3 10 2 11-3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M32 46c6 2 10 0 11 3-4 3-10 2-11-3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+      </svg>
+      <span class="logo-text">
+        <span class="top">GOLDEN BOABAB</span><br>
+        <span class="bottom">COFFEE ROASTING</span>
+      </span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#coffee">Coffee</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#order">Order</a></li>
+      </ul>
+    </nav>
+    <div class="head-right">
+      <a href="#" class="cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+      <a href="#" class="pill-outline">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.5 14.3c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-3.2-.8-2.7-1.1-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.7.7 1.9.1.2.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.3.4-.1.7.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.7.8.2.1.4.2.4.3.1.2.1.7-.1 1.3z"/></svg>
+        <span>Order via WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <img class="bg" src="images/hero.jpg" alt="Baobab tree at sunset in Limpopo">
+  <div class="wrap hero-content">
+    <span class="eyebrow">Rooted in Limpopo</span>
+    <h1>Pure Coffee.<br>Wild Origins.<br><span class="accent">Golden Taste.</span></h1>
+    <div class="rule"></div>
+    <p>Speciality coffee, roasted with care in the heart of the bushveld. For those who appreciate authenticity in every cup.</p>
+    <a href="#coffee" class="btn">Explore our coffee
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="features">
+  <div class="wrap features-row">
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22c-5-2-8-6.5-8-11.5C4 6 7.5 3 12 2c1 5 4.5 8 8 9-1 5.5-4.5 10-8 11z"/><path d="M12 22V9"/></svg>
+      <div><div class="f-title">Locally Roasted</div><div class="f-sub">In Naboomspruit,<br>Limpopo</div></div>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21S3.5 15.9 3.5 9.8C3.5 6.6 5.9 4.5 8.6 4.5c1.7 0 3 .9 3.4 2.1.4-1.2 1.7-2.1 3.4-2.1 2.7 0 5.1 2.1 5.1 5.3 0 6.1-8.5 11.2-8.5 11.2z"/></svg>
+      <div><div class="f-title">Premium Quality</div><div class="f-sub">100% Arabica beans,<br>expertly roasted</div></div>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3z"/><path d="M3.5 12 12 16.5l8.5-4.5"/><path d="M3.5 16.5 12 21l8.5-4.5"/></svg>
+      <div><div class="f-title">Small Batch</div><div class="f-sub">Roasted in small<br>batches for flavour</div></div>
+    </div>
+    <div class="feature">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 16V7a1 1 0 0 1 1-1h9v10"/><path d="M13 10h4l4 4v2h-2"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+      <div><div class="f-title">Collect or Deliver</div><div class="f-sub">Pudo points & local<br>delivery available</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OUR COFFEE ================= -->
+<section class="coffee-section" id="coffee">
+  <div class="wrap coffee-grid">
+    <div class="coffee-intro">
+      <span class="eyebrow">Our Coffee</span>
+      <h2>Crafted for<br>true coffee<br><span class="accent">lovers.</span></h2>
+      <div class="rule"></div>
+      <p>Every bean is carefully selected and roasted to bring out the rich, natural flavours of Africa.</p>
+      <a href="#shop" class="btn">Shop all coffees
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="products" id="shop">
+      <div class="product-card">
+        <div class="product-photo">
+          <img src="images/bag.jpg" alt="Golden Blend kraft coffee bag">
+        </div>
+        <h3>Golden Blend</h3>
+        <p class="desc">Smooth. Balanced. Perfect for everyday.</p>
+        <span class="price">FROM R120</span>
+      </div>
+      <div class="product-card">
+        <div class="product-photo">
+          <img src="images/bag.jpg" alt="Bushveld Strong kraft coffee bag">
+        </div>
+        <h3>Bushveld Strong</h3>
+        <p class="desc">Bold. Rich. Full-bodied with a lasting finish.</p>
+        <span class="price">FROM R120</span>
+      </div>
+      <div class="product-card">
+        <div class="product-photo">
+          <img src="images/bag.jpg" alt="Espresso Roast kraft coffee bag">
+        </div>
+        <h3>Espresso Roast</h3>
+        <p class="desc">Intense. Dark. Made for espresso lovers.</p>
+        <span class="price">FROM R120</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OUR STORY ================= -->
+<section class="story-section" id="story">
+  <div class="story-text">
+    <span class="eyebrow">Our Story</span>
+    <h2>More than coffee.<br>It's <span class="accent">our roots.</span></h2>
+    <p>Golden Boabab Coffee Roasting is a small-batch roastery based in Naboomspruit, Limpopo. Inspired by our land, our people and the timeless strength of the Baobab.</p>
+    <a href="#" class="story-link">Discover our story
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="story-photo">
+    <img src="images/cherries.jpg" alt="Coffee cherries growing on the branch">
+  </div>
+</section>
+
+<!-- ================= INFO STRIP ================= -->
+<section class="info-strip">
+  <div class="wrap info-row">
+    <div class="info-item">
+      <svg class="qr-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#f8f3e8"/>
+        <g fill="#2a1c12">
+          <rect x="8" y="8" width="28" height="28"/><rect x="16" y="16" width="12" height="12" fill="#f8f3e8"/>
+          <rect x="64" y="8" width="28" height="28"/><rect x="72" y="16" width="12" height="12" fill="#f8f3e8"/>
+          <rect x="8" y="64" width="28" height="28"/><rect x="16" y="72" width="12" height="12" fill="#f8f3e8"/>
+          <rect x="44" y="8" width="8" height="8"/><rect x="44" y="24" width="8" height="8"/>
+          <rect x="44" y="44" width="8" height="8"/><rect x="60" y="44" width="8" height="8"/>
+          <rect x="76" y="44" width="8" height="8"/><rect x="44" y="60" width="8" height="8"/>
+          <rect x="44" y="76" width="8" height="8"/><rect x="60" y="76" width="8" height="8"/>
+          <rect x="76" y="60" width="8" height="8"/><rect x="60" y="60" width="8" height="8"/>
+        </g>
+      </svg>
+      <div><h4>Scan to Order</h4><p>Order easily via WhatsApp or collect in-store.</p></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2a1c12" stroke-width="1.5"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg></div>
+      <div><h4>WhatsApp Orders</h4><p>Quick. Easy. Personal. We're here to help.</p></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2a1c12" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg></div>
+      <div><h4>Pudo & Delivery</h4><p>Collect at your nearest Pudo or get it delivered.</p></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2a1c12" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="0.9" fill="#2a1c12" stroke="none"/></svg></div>
+      <div><h4>Follow Our Journey</h4><p>Behind the roast, the beans and our beautiful bushveld.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="order">
+  <div class="wrap">
+    <div class="footer-row">
+      <a href="#" class="footer-logo">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 46V30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M32 30c-2-6-9-8-13-6 2 5 8 8 13 6z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+          <path d="M32 30c2-6 9-8 13-6-2 5-8 8-13 6z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+          <path d="M32 24c-1.5-5-6-7-9-6 1.5 4 5 6.5 9 6z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <path d="M32 24c1.5-5 6-7 9-6-1.5 4-5 6.5-9 6z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        </svg>
+        <span class="footer-logo-text"><span class="top">GOLDEN BOABAB</span><br><span class="bottom">COFFEE ROASTING</span></span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#coffee">Coffee</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#order">Order</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="social-icons">
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span class="footer-copy">© 2025 Golden Boabab Coffee Roasting</span>
+      <span class="footer-copy">Naboomspruit, Limpopo, South Africa</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
